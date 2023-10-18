@@ -46,7 +46,9 @@ namespace ShiftsManager
 
         private void time_button_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            ModifyTimeClock modify = new ModifyTimeClock();
+            modify.Show();
         }
     }
 }

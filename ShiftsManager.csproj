@@ -70,6 +70,12 @@
     <Compile Include="MakePayment.Designer.cs">
       <DependentUpon>MakePayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModifyTimeClock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyTimeClock.Designer.cs">
+      <DependentUpon>ModifyTimeClock.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShiftHistory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MakePayment.resx">
       <DependentUpon>MakePayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyTimeClock.resx">
+      <DependentUpon>ModifyTimeClock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShiftHistory.resx">
       <DependentUpon>ShiftHistory.cs</DependentUpon>

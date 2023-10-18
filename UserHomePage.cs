@@ -105,6 +105,8 @@ namespace ShiftsManager
                     .Sum(p => (decimal?)p.payment_amount);
                 var final_owed = totalowedalltime - totalpayments;
                 //Users should see the total unpaid amount (shift hours x rate) - payments).
+                if (final_owed < 0)
+                    final_owed = 0;
                 owed_label.Text = "The company currently owes you $" + (final_owed ?? 0);
             }
         }
