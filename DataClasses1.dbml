@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ShiftsManagerDB" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-TIFSQA9T\SQLEXPRESS;Initial Catalog=ShiftsManagerDB;Integrated Security=True" SettingsObjectName="ShiftsManager.Properties.Settings" SettingsPropertyName="ShiftsManagerDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.USER_TYPE" Member="USER_TYPEs">
+    <Type Name="USER_TYPE">
+      <Column Name="user_type_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="user_type_desc" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="USER_TYPE_USER" Member="USERs" ThisKey="user_type_id" OtherKey="user_type_id" Type="USER" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USERS" Member="USERs">
+    <Type Name="USER">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(45) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(45) NOT NULL" CanBeNull="false" />
+      <Association Name="USER_CLOCK_IN_OUT" Member="CLOCK_IN_OUTs" ThisKey="user_id" OtherKey="user_id" Type="CLOCK_IN_OUT" />
+      <Association Name="USER_PAYMENT" Member="PAYMENTs" ThisKey="user_id" OtherKey="user_id" Type="PAYMENT" />
+      <Association Name="USER_RATE" Member="RATEs" ThisKey="user_id" OtherKey="user_id" Type="RATE" />
+      <Association Name="USER_TYPE_USER" Member="USER_TYPE" ThisKey="user_type_id" OtherKey="user_type_id" Type="USER_TYPE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CLOCK_IN_OUT" Member="CLOCK_IN_OUTs">
+    <Type Name="CLOCK_IN_OUT">
+      <Column Name="clock_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="day_time_in" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="day_time_out" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="USER_CLOCK_IN_OUT" Member="USER" ThisKey="user_id" OtherKey="user_id" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PAYMENTS" Member="PAYMENTs">
+    <Type Name="PAYMENT">
+      <Column Name="payment_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="payment_amount" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="payment_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="USER_PAYMENT" Member="USER" ThisKey="user_id" OtherKey="user_id" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RATE" Member="RATEs">
+    <Type Name="RATE">
+      <Column Name="rate_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rate_amt" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="USER_RATE" Member="USER" ThisKey="user_id" OtherKey="user_id" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
